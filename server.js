@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const pushDataToGas = require('./services/gasService');
+const pushDataToGas2 = require('./services/gasService');
 const getSnapshotStream = require('./services/cameraService');
 
 const app = express();
@@ -13,6 +14,22 @@ app.use(express.json());
 app.post('/update-sheet', async (req, res) => {
   try {
     const response = await pushDataToGas(req.body);
+    if (response.status === 'success') {
+      res.json({ success: true, ...response });
+    } else {
+      res.status(400).json({ success: false, message: response.message });
+    }
+  } catch (error) {
+    res.status(error.response?.status || 500).json({
+      success: false,
+      message: `Lỗi khi đẩy dữ liệu: ${error.message}`,
+      details: error.response?.data || null,
+    });
+  }
+});
+app.post('/update-sheet2', async (req, res) => {
+  try {
+    const response = await pushDataToGas2(req.body);
     if (response.status === 'success') {
       res.json({ success: true, ...response });
     } else {
