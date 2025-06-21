@@ -28,6 +28,8 @@ app.post('/update-sheet', async (req, res) => {
   }
 });
 app.post('/update-sheet2', async (req, res) => {
+  console.log(req.body);
+  
   try {
     const response = await pushDataToGas2(req.body);
     if (response.status === 'success') {
@@ -56,5 +58,5 @@ app.get('/api/camera/snapshot', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`🚀 Server chạy tại port ${PORT}`));
