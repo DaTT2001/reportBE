@@ -35,5 +35,8 @@ async function pushDataToGas2(payload) {
     throw err;
   }
 }
-module.exports = pushDataToGas;
-module.exports = pushDataToGas2;
+module.exports = {
+  pushDataToGas,
+  pushDataToGas2,
+};
+

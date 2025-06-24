@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const pushDataToGas = require('./services/gasService');
-const pushDataToGas2 = require('./services/gasService');
+const { pushDataToGas, pushDataToGas2 } = require('./services/gasService');
 const getSnapshotStream = require('./services/cameraService');
 
 const app = express();
